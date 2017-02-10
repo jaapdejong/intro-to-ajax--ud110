@@ -20,7 +20,7 @@ function loadData() {
 
 	// load streetview
 	var streetviewUrl = 'http://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + address + '';
-	//$body.append('<img class="bgimg" src="' + streetviewUrl + '">');
+	$body.append('<img class="bgimg" src="' + streetviewUrl + '">');
 
 	// load nytimes
 	var url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
@@ -31,18 +31,12 @@ function loadData() {
 	});
 	$.getJSON( url, function( data ) {
 		console.log(data);	
-		var items = [];
 		$.each( data.response.docs, function( key, val ) {
 			var article = '<a href="' + val.web_url + '">' + val.headline.print_headline + '</a>';
 			var snippet = '<p>' + val.snippet + '</p>';
 			var item = '<li class="article">' + article + snippet + '</li>';
-			items.push( item );
+			$( item ).appendTo( $( '#nytimes-articles' ) );
 		});
-		
-		$( '<ul/>', {
-			'class': 'nytimes-articles',
-			html: items.join('')
-		}).appendTo( 'body' );
 	});
 	
 	return false;
