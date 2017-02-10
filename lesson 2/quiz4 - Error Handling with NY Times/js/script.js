@@ -23,7 +23,7 @@ function loadData() {
 	//$body.append('<img class="bgimg" src="' + streetviewUrl + '">');
 
 	// load nytimes
-	var url = 'https://api.nytimes.com/svc/search/v2/XXXarticlesearch.json';
+	var url = 'https://api.nytimes.com/svc/search/v2/%%%%%SCREWED%%%%%%articlesearch.json';
 	url += '?' + $.param({
 		'api-key': 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
 		'sort': 'newest',
@@ -44,7 +44,7 @@ function loadData() {
 			html: items.join('')
 		}).appendTo( 'body' );
 	})
-	.error( function() {
+	.fail( function() {
 		$( '<p>New York Times Articles Could Not Be Loaded</p>' ).appendTo( 'body' );	
 	});
 	
